@@ -1,13 +1,18 @@
 <header class="w-full bg-gray-50 text-gray-800">
+
     <div class="px-5 py-7">
         <h1 class="text-center text-2xl font-bold mb-2">Ageng D. Prastyawan</h1>
         <h5 class="text-center text-base font-bold">Possibilities are endless!</h5>
     </div>
-    <div class="text-center border-b border-gray-600">
-        <a href="" class="border border-gray-600 py-1 border-b border-gray-50">Home</a>
-        <a href="" class="border border-gray-600 py-1">Blog</a>
-        <a href="" class="border border-gray-600 py-1">Projects</a>
-        <a href="" class="border border-gray-600 py-1">About</a>
-        <a href="" class="border border-gray-600 py-1">Home</a>
-    </div>
+
+    <ul class="list-reset flex justify-center border-b text-sm text-gray-600">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+            <li class="mr-1 {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}-mb-px text-gray-800{{end}}">
+                <a class="inline-block py-2 px-4 text-blue hover:text-gray-800 {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}bg-white border-l border-t border-r rounded-t py-2 px-4 text-blue-dark{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+            </li>
+        {{ end }}
+    </ul>
+
+
 </header>
