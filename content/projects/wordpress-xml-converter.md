@@ -1,15 +1,9 @@
 ---
 title: "Wordpress XML Converter"
-date: 2021-02-18T10:56:16+07:00
+date: 2021-02-18T18:20:44+07:00
 draft: false
+featured: 
+stacks: ["VB .NET"]
+company: "Rexcarnation"
+summary: "Software konversi XML Wordpress menjadi XML Blogger / Blogspot"
 ---
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies lacus et accumsan porta. Nunc elementum feugiat felis, nec pharetra erat commodo quis. Morbi scelerisque leo eget sodales convallis. In massa mauris, mollis sit amet risus at, dapibus fermentum mi. Morbi convallis dictum magna, aliquam finibus diam euismod id. Maecenas placerat lacus eget justo ultricies, a iaculis magna sagittis. Curabitur at pharetra arcu, eget porttitor lorem. Integer sit amet fringilla elit.
-
-Praesent in arcu eget diam feugiat imperdiet vitae vel justo. Curabitur eget interdum eros. Curabitur urna ex, scelerisque sed massa ac, pulvinar gravida quam. Integer dictum est sed convallis ornare. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut sit amet lacus id est pulvinar aliquet nec at nunc. Mauris tempor auctor sem. Praesent ultricies pulvinar sem ut sodales. Nulla facilisi. Sed venenatis auctor eleifend. Nunc odio diam, vehicula nec iaculis in, sodales vel nisl. Fusce porta purus massa, volutpat faucibus elit tempor at.
-
-Maecenas ut felis nisi. Duis semper, tellus id convallis semper, ante massa viverra nunc, pharetra porttitor tortor turpis eu leo. Aenean feugiat, elit et ultrices posuere, ex risus egestas magna, vel venenatis libero orci eu odio. Donec efficitur erat a suscipit porttitor. Phasellus tempus sapien sed faucibus egestas. Aenean at neque sagittis, pulvinar nunc sed, pretium nisl. Praesent vulputate elit ac tempus dictum. Donec non tincidunt erat, eget ullamcorper enim. Curabitur vitae convallis eros, rutrum porttitor ipsum. Ut bibendum orci in mi convallis, sodales auctor sapien semper. In commodo lobortis enim, in fringilla leo elementum sed. Nullam eros mauris, scelerisque iaculis iaculis eu, sagittis a velit. Mauris iaculis ac nunc eget bibendum.
-
-Donec ligula nunc, maximus nec aliquam quis, imperdiet ac tellus. Pellentesque nec magna ac velit rutrum efficitur. Sed iaculis nec nisi id feugiat. Donec felis nulla, vestibulum vel purus eu, eleifend pretium massa. Proin mollis lorem non ligula sagittis, quis pulvinar erat elementum. Duis id rhoncus diam, in blandit erat. Etiam a blandit justo, vel mattis odio.
-
-Suspendisse ullamcorper libero vel lacus posuere, ut sodales ipsum rutrum. Duis ut velit non sapien feugiat pretium. Integer vulputate sem lacus, id tincidunt quam aliquet ultricies. Aenean vel pulvinar arcu, non euismod leo. Quisque auctor, eros ac lobortis blandit, nulla mauris blandit risus, in congue lectus massa ac neque. Etiam tortor nibh, fringilla quis orci vel, sollicitudin efficitur augue. Sed augue lacus, dignissim ac suscipit nec, varius sed diam. Cras sed efficitur enim. Cras dui lorem, interdum ac pretium quis, tempus sed metus.

@@ -2,15 +2,47 @@ baseURL = "https://agengdp.github.io/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "rox"
-sectionPagesMenu = "main"
 
 [build]
   writeStats = true
 
 [menu]
+
   [[menu.main]]
     identifier = "home"
     name = "Home"
     title = "Home Section"
     url = "/"
-    weight = -110
+    weight = 1
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    title = "Blog Section"
+    url = "/blog/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    title = "Projects Section"
+    url = "/projects/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "about_me"
+    name = "About Me"
+    title = "About Me Section"
+    url = "/pages/about/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    title = "Contact Section"
+    url = "/pages/contact/"
+    weight = 5
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

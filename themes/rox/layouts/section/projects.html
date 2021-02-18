@@ -1,8 +1,11 @@
 {{ define "main" }}
-    <div class="w-1/2 mx-auto mt-5 border-b">
-        <ul class="list-unstyled">
+    <div class="w-1/2 my-5 mx-auto">
+        {{ .Content }}
+
+        {{- partial "footer.html" . -}}
+        <ul class="list-unstyled border-b">
         {{ range .Pages }}
-            <li class="border border-b-0 p-3">
+            <li class="border border-b-0 p-3 hover:bg-gray-50">
                 <a href="{{ .RelPermalink }}" class="text-blue-900 text-lg block">
                     {{ if .Draft }}DRAFT: {{end}}{{ .Title }}
                 </a>
