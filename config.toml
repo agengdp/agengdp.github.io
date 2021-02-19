@@ -1,4 +1,4 @@
-baseURL = "https://agengdp.github.io/"
+baseURL = "https://agengdp.gitlab.io/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "rox"
