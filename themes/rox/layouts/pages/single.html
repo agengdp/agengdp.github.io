@@ -5,6 +5,9 @@
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </h1>
         </div>
+        <div class="featured">
+            {{ .Params.featured }}
+        </div>
         <div class="py-2 text-gray-700 text-justify">
             {{ .Content }}
         </div>

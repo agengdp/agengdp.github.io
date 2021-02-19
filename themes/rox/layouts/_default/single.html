@@ -1,7 +1,7 @@
 {{ define "main" }}
     <div class="w-1/2 mx-auto py-5">
         <div class="border-b pb-3">
-            <h1 class="text-4xl font-normal text-gray-700 mb-1">
+            <h1 class="text-3xl font-semibold text-gray-700 mb-1">
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </h1>
             <time class="flex text-sm" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
