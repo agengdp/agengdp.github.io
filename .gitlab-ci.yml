@@ -6,6 +6,7 @@ variables:
 
 build:
   script:
+    - apt-get install npm
     - npm install
 
 test:
