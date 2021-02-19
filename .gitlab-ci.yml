@@ -4,6 +4,10 @@ image: registry.gitlab.com/pages/hugo/hugo_extended:latest
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
+build:
+  script:
+    - npm install
+
 test:
   script:
   - hugo
