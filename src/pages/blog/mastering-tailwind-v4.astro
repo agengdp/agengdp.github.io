@@ -1,0 +1,126 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import "../../styles/global.css";
+import { ArrowLeft, Link as LinkIcon, Share2 } from "lucide-react";
+import { Button } from "../../components/ui/button";
+import { posts } from "../../data/posts";
+
+const post = posts.find((p) => p.slug === "mastering-tailwind-v4")!;
+const { title, date, author } = post;
+---
+
+<style>
+  .article-sub-nav {
+    position: sticky;
+    top: 61px;
+    z-index: 40;
+    border-bottom: 1px solid var(--border);
+    background-color: oklch(from var(--background) l c h / 95%);
+    backdrop-filter: blur(8px);
+  }
+  @supports not (color: oklch(from white l c h)) {
+    .article-sub-nav {
+      background-color: var(--background);
+    }
+  }
+
+  .prose-article h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+  }
+  .prose-article p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    color: var(--muted-foreground);
+  }
+  .prose-article p:first-of-type {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  .prose-article blockquote {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--border);
+    font-style: italic;
+    color: var(--muted-foreground);
+  }
+  .prose-article code {
+    background-color: var(--muted);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+</style>
+
+<PageLayout title={title} active="blog">
+  <div class="article-sub-nav">
+    <div class="mx-auto flex h-12 w-full max-w-4xl items-center justify-between px-6">
+      <a 
+        href="/blog" 
+        class="flex items-center gap-2 font-mono text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Blog
+      </a>
+      <div class="flex items-center gap-1">
+        <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+          <LinkIcon className="h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+          <Share2 className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <main class="mx-auto w-full max-w-4xl px-6 py-10 md:py-20">
+    <header class="mb-12">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl leading-tight text-balance">
+        {title}
+      </h1>
+      <div class="mt-4 flex items-center gap-3 font-mono text-sm text-muted-foreground">
+        <span>{author}</span>
+        <span class="h-1 w-1 rounded-full bg-muted-foreground/40"></span>
+        <time datetime="2026-02-28">{date}</time>
+      </div>
+    </header>
+
+    <article class="prose-article">
+      <p>
+        Tailwind CSS v4 is finally here, and it's not just an incremental update. It's a fundamental ground-up rewrite of the engine that powers our styling workflows, moving away from JavaScript-heavy configurations toward a CSS-first approach.
+      </p>
+
+      <h2>The Lightning Engine</h2>
+      <p>
+        The most significant change in v4 is the transition to <code>Lightning CSS</code>. The internal engine has been completely rewritten in Rust, resulting in build times that are up to 10x faster than v3. For large-scale projects with thousands of utility classes, this is a game-changer.
+      </p>
+
+      <h2>CSS-First Configuration</h2>
+      <p>
+        Say goodbye to <code>tailwind.config.js</code>. In v4, you configure your theme directly in your CSS using CSS variables. 
+      </p>
+      
+      <blockquote>
+        "The best configuration is no configuration." By leveraging native CSS variables, Tailwind v4 feels like a natural extension of the browser rather than a framework sitting on top of it.
+      </blockquote>
+
+      <h2>Automatic Content Detection</h2>
+      <p>
+        You no longer need to specify <code>content</code> paths in a config file. Tailwind v4 automatically scans your project for utility classes, making it truly "zero-config" out of the box. It just works.
+      </p>
+
+      <h2>The Oxide Compiler</h2>
+      <p>
+        The new Oxide compiler is the secret sauce behind the performance. It intelligently parses your files and generates only the CSS you actually use, with better minification and more robust handling of complex CSS patterns.
+      </p>
+
+      <p>
+        Mastering v4 means unlearning some of the configuration-heavy habits of the past and embracing the power of native CSS. It's a cleaner, faster, and more modern way to build for the web.
+      </p>
+    </article>
+  </main>
+</PageLayout>

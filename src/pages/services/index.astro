@@ -1,0 +1,97 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import "../../styles/global.css";
+import ServiceCard from "../../components/ServiceCard.astro";
+import { Layout, Smartphone, Globe, Code2 } from "lucide-react";
+
+const services = [
+  {
+    title: "WordPress Development",
+    href: "/services/wordpress-development",
+    description: "Tailored enterprise-grade WordPress solutions. We focus on performance, security, and a seamless editing experience using modern workflows.",
+    tags: ["Custom Themes", "LMS", "WooCommerce", "ACF Pro"],
+    icon: Globe,
+  },
+  {
+    title: "NextJS Development",
+    href: "/services/nextjs-development",
+    description: "High-performance web applications built with Next.js. Leveraging the latest App Router features, SSR/ISR, and optimized edge deployment.",
+    tags: ["React", "TypeScript", "Tailwind", "Vercel"],
+    icon: Code2,
+  },
+  {
+    title: "Full Stack Development",
+    href: "/services/full-stack-development",
+    description: "Robust end-to-end applications. From architecting scalable backends to crafting polished user interfaces and managing cloud infrastructure.",
+    tags: ["Node.js", "Go", "PostgreSQL", "Docker"],
+    icon: Layout,
+  },
+];
+---
+
+<PageLayout title="Services" active="services">
+  <main class="mx-auto w-full max-w-4xl px-6 py-12 md:py-24">
+    <div class="space-y-12">
+      <!-- Header -->
+      <section class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-muted/50 text-[10px] font-bold uppercase tracking-widest text-primary mb-6">
+          Solutions
+        </div>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight">Services</h1>
+        <p class="mt-6 text-lg text-muted-foreground leading-relaxed">
+          Specialized in building robust applications, delivering end-to-end solutions with a focus on performance and scalability.
+        </p>
+      </section>
+
+      <!-- Services Grid -->
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {services.map((s) => (
+          <ServiceCard {...s} />
+        ))}
+      </div>
+
+      <!-- Feature Highlight -->
+      <section class="mt-20 rounded-3xl border bg-card/50 p-8 md:p-12">
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+          <div class="flex-1 space-y-6">
+            <h2 class="text-3xl font-bold tracking-tight">Standardized Excellence</h2>
+            <p class="text-muted-foreground leading-relaxed">
+              Every project I undertake follows a rigorous development lifecycle. I don't just write code; I build sustainable digital foundations for your business.
+            </p>
+            <ul class="grid gap-3 text-sm font-medium">
+              <li class="flex items-center gap-3">
+                <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                Performance first architecture
+              </li>
+              <li class="flex items-center gap-3">
+                <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                Mobile-first responsive design
+              </li>
+              <li class="flex items-center gap-3">
+                <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                Clean, maintainable codebase
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1 w-full max-w-xs md:max-w-none">
+             <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-muted to-primary/5 border flex items-center justify-center p-8 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(var(--primary),0.1),transparent)] group-hover:scale-150 transition-transform duration-1000"></div>
+                <Code2 size={120} className="text-primary/20 group-hover:text-primary/40 transition-colors duration-500" />
+                <div class="absolute bottom-6 left-6 right-6">
+                   <div class="h-1 w-full bg-border rounded-full overflow-hidden">
+                      <div class="h-full bg-primary w-2/3 animate-[pulse_2s_infinite]"></div>
+                   </div>
+                   <div class="mt-2 flex justify-between text-[10px] font-mono text-muted-foreground/60 uppercase">
+                      <span>Compiling</span>
+                      <span>84%</span>
+                   </div>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</PageLayout>
+
+

@@ -1,0 +1,54 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import "../../styles/global.css";
+import { posts as allPosts } from "../../data/posts";
+
+// Parse date from DD.MM.YYYY to a sortable Date
+function parseDate(dateStr: string): Date {
+  const [day, month, year] = dateStr.split(".");
+  return new Date(Number(year), Number(month) - 1, Number(day));
+}
+
+// Format date for display: "Mar 15, 2026"
+function formatDate(dateStr: string): string {
+  const d = parseDate(dateStr);
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+// Sort posts by date (newest first)
+const posts = allPosts
+  .map((post) => ({
+    ...post,
+    href: `/blog/${post.slug}`,
+    formattedDate: formatDate(post.date),
+  }))
+  .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
+---
+
+<PageLayout title="Blog" active="blog">
+  <main class="mx-auto w-full max-w-3xl px-6 py-12 md:py-20">
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold tracking-tight">Blog</h1>
+      <p class="mt-4 text-muted-foreground">
+        Thoughts on software engineering, product design, and the evolving web.
+      </p>
+    </div>
+
+    <ul class="flex flex-col space-y-4 md:space-y-6">
+      {posts.map((post) => (
+        <li class="flex flex-col md:flex-row md:items-baseline md:gap-8 gap-1 group">
+          <time class="text-sm text-muted-foreground md:w-28 shrink-0 tabular-nums font-mono">
+            {post.formattedDate}
+          </time>
+          <a href={post.href} class="text-lg font-medium text-foreground underline-offset-4 decoration-muted-foreground/30 hover:underline hover:decoration-primary transition-all">
+            {post.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</PageLayout>

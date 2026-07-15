@@ -1,0 +1,24 @@
+---
+const { status = "Available for new projects", sub = "Remote · Indonesia" } = Astro.props;
+---
+
+<div class="group relative overflow-hidden rounded-2xl border bg-card p-5 transition-all hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/5">
+  <div class="relative z-10 flex items-center justify-between">
+    <div class="space-y-1">
+      <div class="flex items-center gap-2 text-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+        </span>
+        <span class="font-medium tracking-tight text-foreground/90">{status}</span>
+      </div>
+      <div class="text-xs text-muted-foreground">{sub}</div>
+    </div>
+    <div class="rounded-full bg-emerald-500/10 p-2 text-emerald-600 dark:text-emerald-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+  </div>
+  
+  <!-- Decorative background element -->
+  <div class="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-emerald-500/5 blur-2xl transition-opacity group-hover:opacity-100 opacity-0"></div>
+</div>

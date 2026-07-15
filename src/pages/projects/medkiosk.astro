@@ -1,0 +1,35 @@
+---
+import ProjectDetailLayout from "../../layouts/ProjectDetailLayout.astro";
+
+const tags = ["VueJS", "Raspberry Pi", "NATS", "Go", "Kubernetes", "Linux", "Medical Tech"];
+const features = [
+  "Self-service Patient Registration",
+  "Biometric & ID Card Scanner Integration",
+  "Real-time Queue Management Sync",
+  "On-premise Edge Computing (Raspberry Pi)",
+  "Event-driven High Availability Architecture",
+  "Multilingual Support (Indonesian/English)",
+];
+
+const challenges = [
+  "Ensuring registration uptime in environments with unstable internet connectivity and local power fluctuations.",
+  "Integrating diverse hardware components (printers, scanners, touchscreens) into a unified web-based interface.",
+];
+
+const solutions = [
+  "Utilized an on-premise Kubernetes cluster and NATS for local message persistence, ensuring data syncs once connectivity is restored.",
+  "Developed a custom Go-based hardware bridge to communicate between the VueJS frontend and specialized peripheral drivers via WebSockets.",
+];
+---
+
+<ProjectDetailLayout
+  title="MedKiosk"
+  subtitle="Smart Hospital Self-Registration System"
+  description="MedKiosk revolutionized the patient check-in experience at RSU Anwar Medika. By deploying self-service terminals powered by Raspberry Pi and a modern VueJS interface, the system reduced administrative bottleneck by 40%. The backend utilizes an event-driven architecture with NATS, ensuring that patient data is securely transmitted and synchronized across hospital departments even in the event of local network outages."
+  image="/assets/projects/hospital-kiosk.png"
+  tags={tags}
+  features={features}
+  challenges={challenges}
+  solutions={solutions}
+  liveLink="#"
+/>

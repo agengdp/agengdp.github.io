@@ -1,0 +1,312 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import "../styles/global.css";
+import { Badge } from "../components/ui/badge";
+import { buttonVariants } from "../components/ui/button";
+import { cn } from "../lib/utils";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+import { WorkExperience } from "../components/WorkExperience";
+import { SkillsFilter } from "../components/SkillsFilter";
+
+const EXPERIENCES = [
+  {
+    id: "freelance",
+    companyName: "Freelancer",
+    positions: [
+      {
+        id: "1",
+        title: "Full Stack Developer",
+        employmentPeriod: "10.2024 — Present",
+        employmentType: "Full-time",
+        icon: "code" as const,
+        description: `
+- Design and develop high performance and type safe applications using Go and TypeScript to enhance the code quality and reduce runtime errors.
+- Built full-stack web applications using Next.js (React) as the frontend, and Go with chi-router, Fiber and Gin as the backend.
+- Developed robust web applications using Laravel + Inertia.js + React.js for modern reactive full-stack web applications.
+- Manage Kubernetes cluster to achieve zero downtime deployment.
+- Integrate with various payment gateways such as Flip, Midtrans, Ottopay, etc and e-wallet like DANA, Gopay.
+- Built a high performance and scalable API as a microservices that can be automatically replicated when on high traffic by Kubernetes cluster.
+- Designed and optimized databases with PostgreSQL, MySQL, and MongoDB, improving query efficiency and data integrity.
+- Implemented CI/CD pipelines with Github Actions for automated container image build.
+- Collaborated with clients to gather requirements, provide technical consultation, and deliver custom solution.
+        `,
+        skills: [
+          "Go",
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Laravel",
+          "Inertia.js",
+          "Kubernetes",
+          "Docker",
+          "PostgreSQL",
+          "MySQL",
+          "MongoDB",
+          "GitHub Actions",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pt-bimasakti",
+    companyName: "PT Bimasakti Multi Sinergi",
+    companyLogo: "/assets/logos/pt-bimasakti.png",
+    positions: [
+      {
+        id: "1",
+        title: "Payment Gateway Engineer",
+        employmentPeriod: "08.2021 — 08.2024",
+        employmentType: "Full-time",
+        icon: "code" as const,
+        description: `
+- Maintain and develop new payment channels such as Virtual Account, E-Money, QRIS, etc.
+- Migrate payment notification type from cron based into Pub Sub using RabbitMQ.
+- Migrate the architecture from monolith to microservices implementation to ensure the cost efficient and high scalability and security.
+- Develop Checkout Page and Link Payment using VueJS as a frontend and Laravel + Octane for the backend.
+- Develop new dashboard system for the operational team using Laravel + Inertia.js + VueJS with team system role & permission.
+        `,
+        skills: [
+          "PHP",
+          "Laravel",
+          "Octane",
+          "VueJS",
+          "Go",
+          "RabbitMQ",
+          "Microservices",
+          "SNAP",
+          "Kubernetes",
+        ],
+      },
+    ],
+  },
+  {
+    id: "rsu-anwar",
+    companyName: "RSU Anwar Medika",
+    companyLogo: "/assets/logos/rsu-anwar.png",
+    positions: [
+      {
+        id: "1",
+        title: "IT Programmer",
+        employmentPeriod: "04.2019 — 08.2021",
+        employmentType: "Full-time",
+        icon: "code" as const,
+        description: `
+- Build and operate On Premise HA Kubernetes Cluster.
+- Implement Microservices & Event Driven Architecture using NATS as choreographer.
+- Developed a patient self registration machine using raspberry pi and VueJS as frontend in the Kiosk machine.
+- Maintain internal hospital app.
+- Sometimes I repair printers and install Windows too.
+        `,
+        skills: [
+          "Kubernetes",
+          "NATS",
+          "Microservices",
+          "Event Driven",
+          "VueJS",
+          "Raspberry Pi",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pt-produk",
+    companyName: "PT Produk Eksklusif Indonesia",
+    companyIcon: "code" as const,
+    positions: [
+      {
+        id: "1",
+        title: "Web Developer",
+        employmentPeriod: "07.2017 — 03.2019",
+        employmentType: "Full-time",
+        icon: "code" as const,
+        description: `
+- Being a "Yes" programmer which fixes all the programming issues. Mostly about Wordpress, CodeIgniter, Laravel and some of aMember.
+- Create a client's landing page from scratch then connect to aMember.
+- Build a warehouse order system that is used for internal companies.
+        `,
+        skills: ["WordPress", "CodeIgniter", "Laravel", "aMember"],
+      },
+    ],
+  },
+  {
+    id: "pt-bumi",
+    companyName: "PT Bumi Menara Internusa",
+    companyLogo: "/assets/logos/pt-bumi.svg",
+    positions: [
+      {
+        id: "1",
+        title: "Web Developer",
+        employmentPeriod: "05.2018 — 03.2019",
+        employmentType: "Full-time",
+        icon: "code" as const,
+        description: `
+- Build Stock opname web apps using codeigniter 3 and bulma UI.
+- Build HR KPI management using codeigniter 3.
+        `,
+        skills: ["CodeIgniter 3", "Bulma UI"],
+      },
+    ],
+  },
+  {
+    id: "rexcarnation",
+    companyName: "Rexcarnation",
+    companyLogo: "/assets/logos/rexcarnation_new.png",
+    positions: [
+      {
+        id: "1",
+        title: "Owner",
+        employmentPeriod: "09.2013 — 10.2016",
+        employmentType: "Full-time",
+        icon: "business" as const,
+        description: `
+- A small software house that I've built in college, which has more than 600+ satisfied customers. The main focus is to create software for Internet Marketers.
+- As a single owner and no friends I do all the things here, starting from Coding, Testing and Debugging, Deploying, Promoting, and bug Fixing.
+        `,
+        skills: ["WordPress", "PHP", "CodeIgniter"],
+      },
+    ],
+  },
+];
+---
+
+<PageLayout title="About" active="about">
+  <main class="mx-auto w-full max-w-4xl px-6 py-10 md:py-20">
+    <!-- Hero -->
+    <section class="max-w-3xl">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">
+        Ageng D. Prastyawan
+      </h1>
+      <div class="mt-4 flex items-center gap-3">
+        <Badge variant="secondary">Full Stack Developer</Badge>
+      </div>
+      <p class="mt-4 text-muted-foreground">
+        Self-taught programmer with 10+ years experience in IT and various
+        industries. I specialize in building robust applications using PHP,
+        Golang, JavaScript, and TypeScript, delivering end-to-end solutions with
+        a focus on performance and scalability.
+      </p>
+      <p class="mt-2 text-muted-foreground">Sidoarjo, East Java, Indonesia</p>
+      <div class="mt-8 flex flex-wrap gap-2">
+        <a href="/contact" class={buttonVariants()}>Contact Me</a>
+        <a href="/projects" class={buttonVariants({ variant: "outline" })}
+          >View Projects</a
+        >
+      </div>
+    </section>
+
+    <!-- Skills and Expertise -->
+    <section class="space-y-6 pt-12 pb-4">
+      <div class="flex items-center gap-4">
+        <h2
+          class="text-sm font-medium uppercase tracking-widest text-muted-foreground/60"
+        >
+          Skills and Expertise
+        </h2>
+        <div class="h-px flex-1 bg-border/50"></div>
+      </div>
+      <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+        {
+          [
+            { title: "PHP / Laravel", desc: "Expert • 10+ years" },
+            { title: "Golang", desc: "Advanced • Microservices" },
+            { title: "JS / TS", desc: "React, Next.js, VueJS" },
+            { title: "WordPress", desc: "Expert • Enterprise" },
+            { title: "Databases", desc: "PostgreSQL, MySQL, NoSQL" },
+            { title: "DevOps", desc: "K8s, Docker, CI/CD" },
+          ].map((s) => (
+            <div class="rounded-lg border bg-card p-3">
+              <div class="text-sm font-medium">{s.title}</div>
+              <div class="text-xs text-muted-foreground">{s.desc}</div>
+            </div>
+          ))
+        }
+      </div>
+
+      <SkillsFilter client:load />
+    </section>
+
+    <!-- Experience -->
+    <section class="space-y-6 py-4">
+      <div class="flex items-center gap-4">
+        <h2
+          class="text-sm font-medium uppercase tracking-widest text-muted-foreground/60"
+        >
+          Experience
+        </h2>
+        <div class="h-px flex-1 bg-border/50"></div>
+      </div>
+      <WorkExperience
+        client:load
+        experiences={EXPERIENCES}
+        className="w-full"
+      />
+    </section>
+
+    <div class="py-10"></div>
+
+    <!-- CTA -->
+    <section
+      class="relative overflow-hidden rounded-3xl border bg-card p-8 md:p-12"
+    >
+      <div
+        class="absolute right-0 top-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 -ml-16 -mb-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl"
+      >
+      </div>
+
+      <div class="relative flex flex-col items-center text-center">
+        <div
+          class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-6"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            ></path>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight md:text-3xl">
+          Let's build something amazing together
+        </h2>
+        <p class="mt-4 max-w-lg text-muted-foreground">
+          Ready to collaborate on your next project? Whether it's a microservice
+          architecture, a modern web app, or complex integrations — I'm here to
+          help.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a
+            href="/contact"
+            class={cn(
+              buttonVariants({ size: "lg" }),
+              "px-8 shadow-lg shadow-primary/20",
+            )}>Start a Conversation</a
+          >
+          <a
+            href="mailto:rexcarnation@gmail.com"
+            class={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "px-8",
+            )}>Send an Email</a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+</PageLayout>

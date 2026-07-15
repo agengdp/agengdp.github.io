@@ -1,0 +1,14 @@
+<h1>CException</h1>
+<p>HomeController cannot find the requested view "error". (/home/ptbmicom/yii/framework/web/CController.php:879)</p><pre>#0 /home/ptbmicom/yii/framework/web/CController.php(783): CController->renderPartial('error', Array, true)
+#1 /home/ptbmicom/public_html/protected/controllers/HomeController.php(274): CController->render('error', Array)
+#2 /home/ptbmicom/yii/framework/web/actions/CInlineAction.php(50): HomeController->actionError()
+#3 /home/ptbmicom/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /home/ptbmicom/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /home/ptbmicom/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/ptbmicom/yii/framework/web/CWebApplication.php(283): CController->run('error')
+#7 /home/ptbmicom/yii/framework/base/CErrorHandler.php(332): CWebApplication->runController('home/error')
+#8 /home/ptbmicom/yii/framework/base/CErrorHandler.php(205): CErrorHandler->render('error', Array)
+#9 /home/ptbmicom/yii/framework/base/CErrorHandler.php(130): CErrorHandler->handleException(Object(CHttpException))
+#10 /home/ptbmicom/yii/framework/base/CApplication.php(713): CErrorHandler->handle(Object(CExceptionEvent))
+#11 [internal function]: CApplication->handleException(Object(CHttpException))
+#12 {main}</pre>

@@ -1,0 +1,41 @@
+---
+const testimonials = [
+  {
+    name: "Ayu S.",
+    role: "Product Manager",
+    quote:
+      "Ageng is fast, thorough, and consistently ships features that feel polished. Communication is clear and proactive.",
+  },
+  {
+    name: "Rizky P.",
+    role: "Founder",
+    quote:
+      "Strong ownership mindset. He can jump from UI details to backend reliability without losing quality.",
+  },
+  {
+    name: "Nadia K.",
+    role: "Tech Lead",
+    quote:
+      "Great at turning vague requirements into clean implementation. Also cares about maintainability.",
+  },
+];
+---
+
+<section class="space-y-4">
+  <div class="flex items-end justify-between gap-4">
+    <h2 class="text-xl font-semibold tracking-tight">Testimonials</h2>
+    <a class="text-sm text-muted-foreground underline" href="#">/testimonials</a>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    {testimonials.map((t) => (
+      <div class="rounded-lg border bg-card p-4">
+        <p class="text-sm text-muted-foreground">“{t.quote}”</p>
+        <div class="mt-4 text-sm">
+          <div class="font-medium">{t.name}</div>
+          <div class="text-muted-foreground">{t.role}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,11 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+const { title = "Portfolio", description = "", active = "portfolio" } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader active={active} />
+  <slot />
+</BaseLayout>

@@ -1,0 +1,123 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import "../../styles/global.css";
+import { ArrowLeft, Link as LinkIcon, Share2 } from "lucide-react";
+import { Button } from "../../components/ui/button";
+import { posts } from "../../data/posts";
+
+const post = posts.find((p) => p.slug === "first-post")!;
+const { title, date, author } = post;
+---
+
+<style>
+  .article-sub-nav {
+    position: sticky;
+    top: 61px; /* height of SiteHeader */
+    z-index: 40;
+    border-bottom: 1px solid var(--border);
+    background-color: oklch(from var(--background) l c h / 95%);
+    backdrop-filter: blur(8px);
+  }
+  @supports not (color: oklch(from white l c h)) {
+    .article-sub-nav {
+      background-color: var(--background);
+    }
+  }
+
+  .prose-article h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+  }
+  .prose-article p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    color: var(--muted-foreground);
+  }
+  .prose-article p:first-of-type {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  .prose-article blockquote {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--border);
+    font-style: italic;
+    color: var(--muted-foreground);
+  }
+  .prose-article a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-article a:hover {
+    color: var(--foreground);
+  }
+</style>
+
+<PageLayout title={title} active="blog">
+  <!-- Sub-navigation bar -->
+  <div class="article-sub-nav">
+    <div class="mx-auto flex h-12 w-full max-w-4xl items-center justify-between px-6">
+      <a 
+        href="/blog" 
+        class="flex items-center gap-2 font-mono text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Blog
+      </a>
+      <div class="flex items-center gap-1">
+        <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+          <LinkIcon className="h-4 w-4" />
+        </Button>
+        <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
+          <Share2 className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <main class="mx-auto w-full max-w-4xl px-6 py-10 md:py-20">
+    <header class="mb-12">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl leading-tight text-balance">
+        {title}
+      </h1>
+      <div class="mt-4 flex items-center gap-3 font-mono text-sm text-muted-foreground">
+        <span>{author}</span>
+        <span class="h-1 w-1 rounded-full bg-muted-foreground/40"></span>
+        <time datetime="2026-03-15">{date}</time>
+      </div>
+    </header>
+
+    <article class="prose-article">
+      <p>
+        The landscape of web development has completely transformed over the past few years. As we look into 2026, the boundaries between frontend and backend continue to blur, and AI has become an inseparable companion in our daily coding workflows.
+      </p>
+
+      <h2>The Era of Intelligent Tooling</h2>
+      <p>
+        We are no longer just writing code; we are orchestrating logic. AI-driven agents can now scaffold entire applications from a single prompt, refactor legacy codebases in minutes, and preemptively catch security vulnerabilities before they hit production. But this doesn't mean developers are obsolete—it means our role has elevated from "syntax wranglers" to architectural visionaries.
+      </p>
+
+      <h2>Serverless at the Edge</h2>
+      <p>
+        Remember when deploying meant spinning up a fleet of EC2 instances? Now, everything runs at the edge. Compute happens within milliseconds of the user, dramatically reducing latency and improving the overall experience. Databases have followed suit, becoming globally distributed and serverless by default.
+      </p>
+
+      <blockquote>
+        The best infrastructure is the one you don't even know is there. It just scales, heals itself, and serves your users instantly regardless of where they are on the planet.
+      </blockquote>
+
+      <h2>The Return of Simplicity</h2>
+      <p>
+        Ironically, as our tools have become more powerful, our approach has become simpler. We are seeing a resurgence of plain HTML, native browser APIs, and lightweight libraries. The heavy JavaScript frameworks of the early 2020s are being replaced by architectures that ship mostly zero JS by default, hydrating only tiny islands of interactivity.
+      </p>
+
+      <p>
+        The future is incredibly exciting. It's a fantastic time to be building for the web.
+      </p>
+    </article>
+  </main>
+</PageLayout>

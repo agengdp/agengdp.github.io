@@ -1,0 +1,41 @@
+---
+import ServiceDetailLayout from "../../layouts/ServiceDetailLayout.astro";
+
+const deliverables = [
+  "Next.js App Router orchestration",
+  "Server Components & Server Actions implementation",
+  "Dynamic & Static rendering optimization (ISR/SSR)",
+  "Edge Middleware & Functions integration",
+  "Advanced Auth (NextAuth/Clerk) setup",
+  "Performance optimization (Core Web Vitals)",
+  "CMS integration (Sanity/Contentful/Prismic)",
+  "SEO & Metadata optimization architecture",
+];
+
+const process = [
+  {
+    title: "Requirements Gathering",
+    description: "Defining the functional and non-functional requirements for your high-performance web application.",
+  },
+  {
+    title: "Prototype & Proof of Concept",
+    description: "Rapidly building a working model to validate core features and user experience.",
+  },
+  {
+    title: "Production Development",
+    description: "Building out the full application with a focus on clean code and performance benchmarks.",
+  },
+  {
+    title: "SEO & Launch",
+    description: "Ensuring your app is fully optimized for search engines before a global edge deployment.",
+  },
+];
+---
+
+<ServiceDetailLayout 
+  title="NextJS Development"
+  description="Crafting blazing-fast, SEO-friendly web experiences using the most powerful React framework. Optimized for performance, user experience, and growth."
+  tags={["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"]}
+  deliverables={deliverables}
+  process={process}
+/>

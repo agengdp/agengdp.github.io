@@ -1,0 +1,169 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import "../styles/global.css";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+---
+
+<PageLayout title="About" active="about">
+  <main class="mx-auto w-full max-w-5xl px-4 py-10 md:py-16">
+    <!-- Hero -->
+    <section class="max-w-3xl">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">About Me</h1>
+      <div class="mt-4 flex items-center gap-3">
+        <h2 class="text-2xl font-medium">Ageng D. Prastyawan</h2>
+        <Badge variant="secondary">Full Stack Developer</Badge>
+      </div>
+      <p class="mt-4 text-muted-foreground">
+        Self-taught programmer with 10+ years experience in IT and various industries. I specialize in building robust applications using PHP, Golang, JavaScript, and TypeScript, delivering end-to-end solutions with a focus on performance and scalability.
+      </p>
+      <p class="mt-2 text-muted-foreground">Sidoarjo, East Java, Indonesia</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <Button as="a" href="/contact">Contact Me</Button>
+        <Button as="a" href="/projects" variant="outline">View Projects</Button>
+      </div>
+    </section>
+
+    <Separator class="my-10" />
+
+    <!-- Skills -->
+    <section class="space-y-6">
+      <h2 class="text-xl font-semibold tracking-tight">Skills & Expertise</h2>
+      <p class="text-muted-foreground">A comprehensive toolkit for building exceptional digital experiences</p>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">PHP / Laravel</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Expert • 10+ years building robust backend systems & APIs</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">Golang</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Advanced • High-performance microservices & concurrent systems</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">JavaScript / TypeScript</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Advanced • Modern frontend with React, Next.js, VueJS</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">WordPress</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Expert • Custom themes, plugins, and enterprise integrations</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">Databases</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">PostgreSQL, MySQL, MongoDB, Redis — optimized & scalable</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">DevOps & Infra</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Docker, Kubernetes, GCP, GitHub Actions — zero-downtime deployments</CardContent>
+        </Card>
+      </div>
+    </section>
+
+    <Separator class="my-10" />
+
+    <!-- Experience Timeline -->
+    <section class="space-y-6">
+
+  <h2 class="text-xl font-semibold tracking-tight">Experience</h2>
+        <!-- 2024 - Present -->
+          <h3 class="text-lg font-semibold">Freelancer — Full Stack Developer</h3>
+          <div class="mb-3 text-sm text-muted-foreground">Remote, Indonesia</div>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+            <li>Design and develop high performance and type safe applications using Go and TypeScript</li>
+            <li>Built full-stack web applications using Next.js (React) as frontend, Go with chi-router, Fiber and Gin as backend</li>
+            <li>Developed robust web applications using Laravel + Inertia.js + React.js</li>
+            <li>Manage Kubernetes cluster to achieve zero downtime deployment</li>
+            <li>Integrate with various payment gateways (Flip, Midtrans, Ottopay) and e-wallets (DANA, GoPay)</li>
+            <li>Built high performance and scalable API as microservices with Kubernetes auto-scaling</li>
+            <li>Designed and optimized databases with PostgreSQL, MySQL, and MongoDB</li>
+            <li>Implemented CI/CD pipelines with GitHub Actions</li>
+          </ul>
+        </div>
+
+        <!-- 2021 - 2024 -->
+          <h3 class="text-lg font-semibold">PT Bimasakti Multi Sinergi — Payment Gateway Engineer</h3>
+          <div class="mb-3 text-sm text-muted-foreground">Sidoarjo, Indonesia</div>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+            <li>Maintain and develop new payment channels: Virtual Account, E-Money, QRIS</li>
+            <li>Integrate payment channels direct to Bank and E-Wallet providers (BSI, Muamalat, CIMB Niaga, OVO, ShopeePay, GoPay)</li>
+            <li>Design and develop new API version to comply with Bank Indonesia Open API Standard (SNAP)</li>
+            <li>Migrate payment notification from cron based to Pub Sub using RabbitMQ</li>
+            <li>Migrate architecture from monolith to microservices for cost efficiency, scalability, and security</li>
+            <li>Develop Checkout Page and Link Payment using VueJS frontend and Laravel + Octane backend</li>
+            <li>Develop new dashboard system for operational team using Laravel + Inertia.js + VueJS</li>
+          </ul>
+        </div>
+
+        <!-- 2019 - 2021 -->
+          <h3 class="text-lg font-semibold">RSU Anwar Medika — IT Programmer</h3>
+          <div class="mb-3 text-sm text-muted-foreground">Sidoarjo, Indonesia</div>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+            <li>Build and operate On Premise HA Kubernetes Cluster</li>
+            <li>Implement Microservices & Event Driven Architecture using NATS</li>
+            <li>Developed patient self registration machine using Raspberry Pi and VueJS in Kiosk machine</li>
+            <li>Maintain internal hospital app</li>
+          </ul>
+        </div>
+
+        <!-- 2017 - 2019 -->
+          <h3 class="text-lg font-semibold">PT Produk Eksklusif Indonesia — Web Developer</h3>
+          <div class="mb-3 text-sm text-muted-foreground">Remote, Indonesia</div>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+            <li>Fixed all programming issues — WordPress, CodeIgniter, Laravel, aMember</li>
+            <li>Create client landing pages from scratch then connect to aMember</li>
+            <li>Build warehouse order system for internal company use</li>
+          </ul>
+        </div>
+
+        <!-- 2018 - 2019 -->
+          <h3 class="text-lg font-semibold">PT Bumi Menara Internusa — Web Developer</h3>
+          <div class="mb-3 text-sm text-muted-foreground">Surabaya, Indonesia</div>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+            <li>Build Stock opname web apps using CodeIgniter 3 and Bulma UI</li>
+            <li>Build HR KPI management using CodeIgniter 3</li>
+          </ul>
+        </div>
+
+        <!-- 2013 - 2016 -->
+          <h3 class="text-lg font-semibold">Rexcarnation — Owner</h3>
+          <div class="mb-3 text-sm text-muted-foreground">Sidoarjo, Indonesia</div>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+            <li>Small software house built in college with 600+ satisfied customers</li>
+            <li>Main focus: create software for Internet Marketers</li>
+            <li>As single owner: Coding, Testing, Debugging, Deploying, Promoting, Bug Fixing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <Separator class="my-10" />
+
+    <!-- CTA -->
+    <section class="rounded-lg border bg-card p-6 text-center">
+      <h2 class="text-xl font-semibold tracking-tight">Let's build something amazing together</h2>
+      <p class="mt-2 text-muted-foreground">
+        Ready to collaborate on your next project? I'd love to hear about your ideas and discuss how we can work together.
+      </p>
+      <Button as="a" href="/contact" class="mt-4">Get in Touch</Button>
+    </section>
+  </main>
+</PageLayout>

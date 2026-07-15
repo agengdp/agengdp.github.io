@@ -1,0 +1,249 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import "../styles/global.css";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+import { WorkExperience } from "../components/WorkExperience";
+
+const EXPERIENCES = [
+  {
+    id: "freelancer",
+    companyName: "Freelancer",
+    positions: [
+      {
+        id: "1",
+        title: "Full Stack Developer",
+        employmentPeriod: "10.2024 — Present",
+        employmentType: "Part-time",
+        icon: "code",
+        description: `Design and develop high performance and type safe applications using Go and TypeScript.
+Built full-stack web applications using Next.js (React) as frontend, Go with chi-router, Fiber and Gin as backend.
+Developed robust web applications using Laravel + Inertia.js + React.js.
+Manage Kubernetes cluster to achieve zero downtime deployment.
+Integrate with various payment gateways (Flip, Midtrans, Ottopay) and e-wallets (DANA, GoPay).
+Built high performance and scalable API as microservices with Kubernetes auto-scaling.
+Designed and optimized databases with PostgreSQL, MySQL, and MongoDB.
+Implemented CI/CD pipelines with GitHub Actions.
+Collaborate with clients to gather requirements, provide technical consultation, and deliver custom solution.`,
+        skills: [
+          "Go",
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Laravel",
+          "Inertia.js",
+          "Kubernetes",
+          "Docker",
+          "PostgreSQL",
+          "MySQL",
+          "MongoDB",
+          "GitHub Actions",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pt-bimasakti",
+    companyName: "PT Bimasakti Multi Sinergi",
+    positions: [
+      {
+        id: "1",
+        title: "Payment Gateway Engineer",
+        employmentPeriod: "08.2021 — 08.2024",
+        employmentType: "Full-time",
+        icon: "code",
+        description: `Maintain and develop new payment channels: Virtual Account, E-Money, QRIS.
+Integrate payment channels direct to Bank and E-Wallet providers (BSI, Muamalat, CIMB Niaga, OVO, ShopeePay, GoPay).
+Design and develop new API version to comply with Bank Indonesia Open API Standard (SNAP).
+Migrate payment notification from cron based to Pub Sub using RabbitMQ.
+Migrate architecture from monolith to microservices for cost efficiency, scalability, and security.
+Develop Checkout Page and Link Payment using VueJS frontend and Laravel + Octane backend.
+Develop new dashboard system for operational team using Laravel + Inertia.js + VueJS with team system role & permission.`,
+        skills: [
+          "PHP",
+          "Laravel",
+          "Octane",
+          "VueJS",
+          "Go",
+          "RabbitMQ",
+          "Microservices",
+          "SNAP",
+          "Kubernetes",
+        ],
+      },
+    ],
+  },
+  {
+    id: "rsu-anwar",
+    companyName: "RSU Anwar Medika",
+    positions: [
+      {
+        id: "1",
+        title: "IT Programmer",
+        employmentPeriod: "04.2019 — 08.2021",
+        employmentType: "Full-time",
+        icon: "code",
+        description: `Build and operate On Premise HA Kubernetes Cluster.
+Implement Microservices & Event Driven Architecture using NATS as choreographer.
+Developed a patient self registration machine using Raspberry Pi and VueJS in Kiosk machine.
+Maintain internal hospital app.
+Sometimes repair printers and install Windows.`,
+        skills: [
+          "Kubernetes",
+          "NATS",
+          "Microservices",
+          "Event Driven",
+          "VueJS",
+          "Raspberry Pi",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pt-produk",
+    companyName: "PT Produk Eksklusif Indonesia",
+    positions: [
+      {
+        id: "1",
+        title: "Web Developer",
+        employmentPeriod: "07.2017 — 03.2019",
+        employmentType: "Full-time",
+        icon: "code",
+        description: `Being a "Yes" programmer which fixes all the programming issues.
+Mostly about WordPress, CodeIgniter, Laravel and some of aMember.
+Create client's landing page from scratch then connect to aMember.
+Build a warehouse order system that is used for internal companies.`,
+        skills: ["WordPress", "CodeIgniter", "Laravel", "aMember"],
+      },
+    ],
+  },
+  {
+    id: "pt-bumi",
+    companyName: "PT Bumi Menara Internusa",
+    positions: [
+      {
+        id: "1",
+        title: "Web Developer",
+        employmentPeriod: "05.2018 — 03.2019",
+        employmentType: "Full-time",
+        icon: "code",
+        description: `Build Stock opname web apps using CodeIgniter 3 and Bulma UI.
+Build HR KPI management using CodeIgniter 3.`,
+        skills: ["CodeIgniter 3", "Bulma UI"],
+      },
+    ],
+  },
+  {
+    id: "rexcarnation",
+    companyName: "Rexcarnation",
+    positions: [
+      {
+        id: "1",
+        title: "Owner",
+        employmentPeriod: "09.2013 — 10.2016",
+        employmentType: "Part-time",
+        icon: "business",
+        description: `A small software house that I've built in college, which has more than 600+ satisfied customers.
+The main focus is to create software for Internet Marketers.
+As a single owner and no friends I do all the things here, starting from Coding, Testing and Debugging, Deploying, Promoting, and Bug Fixing.`,
+        skills: ["WordPress", "PHP", "CodeIgniter"],
+      },
+    ],
+  },
+];
+---
+
+<PageLayout title="About" active="about">
+  <main class="mx-auto w-full max-w-5xl px-4 py-10 md:py-16">
+    <!-- Hero -->
+    <section class="max-w-3xl">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">Ageng D. Prastyawan</h1>
+      <div class="mt-4 flex items-center gap-3">
+        <Badge variant="secondary">Full Stack Developer</Badge>
+      </div>
+      <p class="mt-4 text-muted-foreground">
+        Self-taught programmer with 10+ years experience in IT and various industries. I specialize in building robust applications using PHP, Golang, JavaScript, and TypeScript, delivering end-to-end solutions with a focus on performance and scalability.
+      </p>
+      <p class="mt-2 text-muted-foreground">Sidoarjo, East Java, Indonesia</p>
+      <div class="mt-8 flex flex-wrap gap-2">
+        <Button as="a" href="/contact">Contact Me</Button>
+        <Button as="a" href="/projects" variant="outline">View Projects</Button>
+      </div>
+    </section>
+
+    <Separator class="my-12" />
+
+    <!-- Skills -->
+    <section class="space-y-6 py-8">
+      <h2 class="text-xl font-semibold tracking-tight">Skills & Expertise</h2>
+      <p class="text-muted-foreground">A comprehensive toolkit for building exceptional digital experiences</p>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">PHP / Laravel</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Expert • 10+ years building robust backend systems & APIs</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">Golang</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Advanced • High-performance microservices & concurrent systems</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">JavaScript / TypeScript</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Advanced • Modern frontend with React, Next.js, VueJS</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">WordPress</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Expert • Custom themes, plugins, and enterprise integrations</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">Databases</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">PostgreSQL, MySQL, MongoDB, Redis — optimized & scalable</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">DevOps & Infra</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">Docker, Kubernetes, GCP, GitHub Actions — zero-downtime deployments</CardContent>
+        </Card>
+      </div>
+    </section>
+
+    <Separator class="my-12" />
+
+    <!-- Work Experience Component (redesigned) -->
+    <section class="space-y-6 py-8">
+      <h2 class="text-xl font-semibold tracking-tight">Experience</h2>
+      <p class="text-muted-foreground">Professional timeline with details, skills, and contributions.</p>
+
+      <WorkExperience client:load experiences={EXPERIENCES} className="w-full" />
+    </section>
+
+    <Separator class="my-12" />
+
+    <!-- CTA -->
+    <section class="rounded-lg border bg-card p-6 text-center">
+      <h2 class="text-xl font-semibold tracking-tight">Let's build something amazing together</h2>
+      <p class="mt-2 text-muted-foreground">
+        Ready to collaborate on your next project? I'd love to hear about your ideas and discuss how we can work together.
+      </p>
+      <Button as="a" href="/contact" class="mt-4">Get in Touch</Button>
+    </section>
+  </main>
+</PageLayout>

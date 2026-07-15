@@ -1,0 +1,35 @@
+---
+import ProjectDetailLayout from "../../layouts/ProjectDetailLayout.astro";
+
+const tags = ["CodeIgniter 3", "MySQL", "Bulma UI", "PHP", "Barcode Systems", "ERP"];
+const features = [
+  "Real-time Inventory Tracking",
+  "Automated Low-stock Alerts",
+  "Multi-warehouse Management",
+  "Barcode & SKU Generation",
+  "Shipment Tracking Dashboard",
+  "Operational Role-based Access Control",
+];
+
+const challenges = [
+  "Transitioning from manual paper-based tracking to a digital system without disrupting daily operations.",
+  "Optimizing database queries for large-scale inventory reports covering thousands of unique SKU movements.",
+];
+
+const solutions = [
+  "Designed a phased rollout strategy with a user-friendly UI (Bulma) to minimize training overhead for warehouse staff.",
+  "Implemented advanced SQL indexing and caching layers to ensure report generation remains fast under high data volumes.",
+];
+---
+
+<ProjectDetailLayout
+  title="LogiWare"
+  subtitle="Enterprise Warehouse & Inventory System"
+  description="LogiWare is a robust warehouse management system designed to streamline supply chain operations. Built for PT Bumi Menara Internusa, the application manages real-time stock levels, warehouse movements, and shipping logistics. It provides managers with actionable insights into inventory health and operational bottlenecks, significantly improving data accuracy and reducing fulfillment times across multiple distribution centers."
+  image="/assets/projects/warehouse-system.png"
+  tags={tags}
+  features={features}
+  challenges={challenges}
+  solutions={solutions}
+  liveLink="#"
+/>

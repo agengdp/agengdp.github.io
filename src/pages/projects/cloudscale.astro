@@ -1,0 +1,35 @@
+---
+import ProjectDetailLayout from "../../layouts/ProjectDetailLayout.astro";
+
+const tags = ["Go", "Docker", "Kubernetes", "Redis", "Terraform", "Cloud Native"];
+const features = [
+  "Automatic Horizontal Pod Autoscaling",
+  "Centralized Redis Caching Layer",
+  "Infrastructure as Code (Terraform)",
+  "Zero-downtime Blue/Green Deployments",
+  "Real-time Resource Monitoring",
+  "Distributed Tracing with Jaeger",
+];
+
+const challenges = [
+  "Maintaining consistent application state and cache coherency across multiple cloud regions.",
+  "Reducing container startup times to ensure the system can react to sudden traffic surges in seconds.",
+];
+
+const solutions = [
+  "Architected a global Redis cluster with regional replication to minimize latency and ensure state consistency.",
+  "Optimized Docker images using multi-stage builds and implemented pre-warming strategies for critical service nodes.",
+];
+---
+
+<ProjectDetailLayout
+  title="CloudScale API"
+  subtitle="Advanced Microservices Infrastructure"
+  description="CloudScale is a meta-infrastructure project designed to simplify the deployment and scaling of enterprise-grade microservices. By providing a standardized orchestration layer on top of Kubernetes, CloudScale enables developers to focus on business logic while the platform handles auto-scaling, load balancing, and self-healing. The project incorporates best-of-breed tools like Terraform for infrastructure provisioning and Redis for high-speed data access."
+  image="/assets/projects/cloudscale-infra.png"
+  tags={tags}
+  features={features}
+  challenges={challenges}
+  solutions={solutions}
+  liveLink="#"
+/>

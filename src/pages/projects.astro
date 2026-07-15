@@ -1,0 +1,145 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import "../styles/global.css";
+import { Badge } from "../components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+
+const projects = [
+  {
+    title: "PayFlow",
+    subtitle: "Payment Gateway Engine",
+    description: "A high-performance payment gateway supporting Virtual Accounts, QRIS, and E-Money integrations. Built with a microservices architecture for high scalability and secure transaction processing.",
+    image: "/assets/projects/payment-gateway.png",
+    tags: ["Go", "Laravel", "VueJS", "RabbitMQ", "K8s"],
+    link: "/projects/payflow",
+    featured: true
+  },
+  {
+    title: "MedKiosk",
+    subtitle: "Hospital Self-Registration",
+    description: "Self-service kiosks for hospital patient registration, reducing wait times by 40%. Integrated with on-premise Kubernetes and NATS for robust, event-driven messaging.",
+    image: "/assets/projects/hospital-kiosk.png",
+    tags: ["VueJS", "Raspberry Pi", "NATS", "Go", "K8s"],
+    link: "/projects/medkiosk",
+    featured: true
+  },
+  {
+    title: "LogiWare",
+    subtitle: "Warehouse Management System",
+    description: "An end-to-end warehouse solution for real-time inventory tracking, order management, and shipping automation. Focused on operational efficiency and data accuracy.",
+    image: "/assets/projects/warehouse-system.png",
+    tags: ["CodeIgniter 3", "MySQL", "Bulma UI", "PHP"],
+    link: "/projects/logiware",
+    featured: false
+  },
+  {
+    title: "CloudScale API",
+    subtitle: "Microservices Infrastructure",
+    description: "Automated API scaling and management layer designed for high-traffic environments, ensuring 99.9% uptime with Kubernetes auto-replication and Redis caching.",
+    image: "/assets/projects/cloudscale-infra.png",
+    tags: ["Go", "Docker", "Kubernetes", "Redis"],
+    link: "/projects/cloudscale",
+    featured: false
+  }
+];
+---
+
+<PageLayout title="Projects · Ageng D. Prastyawan" active="projects">
+  <main class="mx-auto w-full max-w-4xl px-6 py-10 md:py-20">
+    <div class="space-y-4">
+        <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Selected Work</h1>
+        <p class="max-w-xl text-muted-foreground">
+        A collection of projects I've built, ranging from high-performance payment engines to specialized industrial hardware integrations.
+        </p>
+    </div>
+
+    <div class="mt-12 space-y-20">
+      <!-- Featured Projects -->
+      <section class="grid gap-8 md:grid-cols-2">
+        {projects.filter(p => p.featured).map((p) => (
+          <div class="group relative flex flex-col space-y-4">
+            <a href={p.link} class="relative aspect-[16/10] overflow-hidden rounded-2xl border bg-muted shadow-sm transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20">
+              <img 
+                src={p.image} 
+                alt={p.title} 
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </a>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-semibold tracking-tight">
+                    <a href={p.link} class="hover:underline">{p.title}</a>
+                </h3>
+                <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-wider">Featured</Badge>
+              </div>
+              <p class="text-sm font-medium text-muted-foreground/80">{p.subtitle}</p>
+              <p class="text-sm text-muted-foreground line-clamp-2">{p.description}</p>
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                {p.tags.slice(0, 4).map((t) => (
+                  <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">{t}</Badge>
+                ))}
+              </div>
+              <div class="pt-2">
+                 <Button asChild variant="link" className="h-auto p-0 text-sm font-medium group-hover:underline">
+                    <a href={p.link}>
+                        View Project Details
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 transition-transform group-hover:translate-x-1"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                    </a>
+                 </Button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <!-- Archive / More Work -->
+      <section class="space-y-8 pt-8 border-t">
+        <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold tracking-tight">More Projects</h2>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2">
+          {projects.filter(p => !p.featured).map((p) => (
+            <a href={p.link} class="block transition-transform hover:-translate-y-1">
+                <Card className="flex flex-col h-full overflow-hidden transition-all hover:bg-accent/50 group border-muted/60">
+                <CardHeader className="p-5">
+                    <div class="flex items-center justify-between">
+                        <CardTitle className="text-lg group-hover:underline">{p.title}</CardTitle>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1"><path d="M7 7h10v10M7 17 17 7"/></svg>
+                    </div>
+                    <p class="text-xs font-medium text-muted-foreground/80">{p.subtitle}</p>
+                </CardHeader>
+                <CardContent className="flex-1 space-y-4 p-5 pt-0">
+                    <p class="text-sm text-muted-foreground line-clamp-3">{p.description}</p>
+                    <div class="flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                        <Badge variant="secondary" className="px-1.5 py-0 text-[9px] font-normal">{t}</Badge>
+                    ))}
+                    </div>
+                </CardContent>
+                </Card>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+
+    <!-- CTA -->
+    <section class="mt-24 rounded-3xl border bg-card p-8 text-center md:p-12 relative overflow-hidden">
+        <div class="absolute right-0 top-0 -mr-16 -mt-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl"></div>
+        <div class="relative">
+            <h2 class="text-2xl font-bold tracking-tight">Have a project in mind?</h2>
+            <p class="mt-4 text-muted-foreground">I'm always looking for interesting projects and collaborations.</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <Button asChild size="lg">
+                    <a href="/contact">Get in Touch</a>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                    <a href="/services">Our Services</a>
+                </Button>
+            </div>
+        </div>
+    </section>
+  </main>
+</PageLayout>

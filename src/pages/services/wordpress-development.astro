@@ -1,0 +1,41 @@
+---
+import ServiceDetailLayout from "../../layouts/ServiceDetailLayout.astro";
+
+const deliverables = [
+  "Custom Theme development from scratch",
+  "Advanced Custom Fields (ACF) integration",
+  "WooCommerce customization & optimization",
+  "Plugin development & customizations",
+  "Security audit & hardening",
+  "Performance optimization (Caching, CDN, DB)",
+  "Automated backup & maintenance setup",
+  "Gutenberg Block development (React-based)",
+];
+
+const process = [
+  {
+    title: "Environment Setup",
+    description: "Staging and production environment provisioning with modern DevOps practices (Docker/WP-CLI).",
+  },
+  {
+    title: "Structure & Data Modeling",
+    description: "Carefully planning custom post types and data structures for a clean editing experience.",
+  },
+  {
+    title: "Theme & Block Coding",
+    description: "Building the visual layer and editor components with a focus on speed and accessibility.",
+  },
+  {
+    title: "Hardening & Optimization",
+    description: "Securing the installation and optimizing performance for high traffic volumes.",
+  },
+];
+---
+
+<ServiceDetailLayout 
+  title="WordPress Development"
+  description="Elevating WordPress beyond its limits. I build bespoke, high-performance, and secure WordPress ecosystems that empower content creators."
+  tags={["WordPress", "PHP", "MySQL", "ACF Pro", "JavaScript", "WooCommerce"]}
+  deliverables={deliverables}
+  process={process}
+/>

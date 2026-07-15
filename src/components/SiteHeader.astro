@@ -1,0 +1,93 @@
+---
+import ThemeToggle from "./ThemeToggle";
+import CommandPalette from "./CommandPalette";
+import ServicesDropdown from "./ServicesDropdown";
+import MobileNavDropdown from "./MobileNavDropdown";
+
+const { active = "portfolio" } = Astro.props;
+
+const links = [
+  { key: "about", label: "About", href: "/about" },
+  { key: "projects", label: "Projects", href: "/projects" },
+  { key: "blog", label: "Blog", href: "/blog" },
+  { key: "services", label: "Services", href: "/services" },
+  { key: "contact", label: "Contact", href: "/contact" },
+];
+---
+
+<header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
+  <div
+    class="mx-auto flex h-[61px] w-full max-w-4xl items-center justify-between px-6"
+  >
+    <a href="/" class="font-semibold tracking-tight">
+      @<span class="font-semibold">agengdp</span>
+    </a>
+
+    <nav class="flex items-center gap-2">
+      <div class="flex items-center gap-2 md:hidden">
+        <ThemeToggle client:load />
+        <MobileNavDropdown client:load />
+      </div>
+
+      <div class="hidden items-center gap-1 md:flex">
+        {
+          links.slice(0, 3).map((l) => (
+            <a
+              href={l.href}
+              class:list={[
+                "rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent",
+                active === l.key
+                  ? "bg-accent text-foreground"
+                  : "text-muted-foreground",
+              ]}
+            >
+              {l.label}
+            </a>
+          ))
+        }
+
+        <ServicesDropdown client:load active={active === "services"} />
+
+        {
+          links.slice(4).map((l) => (
+            <a
+              href={l.href}
+              class:list={[
+                "rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent",
+                active === l.key
+                  ? "bg-accent text-foreground"
+                  : "text-muted-foreground",
+              ]}
+            >
+              {l.label}
+            </a>
+          ))
+        }
+
+        <button
+          type="button"
+          class="ml-1 rounded-md p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          onclick="window.dispatchEvent(new CustomEvent('open-command-palette'))"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-search"
+            ><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"
+            ></path>
+          </svg>
+        </button>
+
+        <ThemeToggle client:load />
+      </div>
+    </nav>
+  </div>
+</header>

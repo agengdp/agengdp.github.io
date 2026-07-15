@@ -1,0 +1,174 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import "../styles/global.css";
+
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+
+import AvailabilityCard from "../components/AvailabilityCard.astro";
+import StatCard from "../components/StatCard.astro";
+import ClientCloud from "../components/ClientCloud.astro";
+
+const NAME = "Ageng D. Prastyawan";
+const ROLE = "Full Stack Developer";
+
+const headline = "Full-Stack\nDeveloper &\nWeb Architect";
+const intro =
+  "Hi, I'm Ageng D. Prastyawan. Self-taught programmer with 10+ years experience in IT. I specialize in building robust applications using PHP, Golang, JavaScript, and TypeScript, delivering end-to-end solutions with a focus on performance and scalability.";
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/agengdp" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/agengdp" },
+  { label: "X", href: "https://x.com/agengdp" },
+  { label: "Email", href: "mailto:rexcarnation@gmail.com" },
+  { label: "WhatsApp", href: "https://wa.me/62895633156874" },
+];
+
+const stats = [
+  { label: "Experience", value: "10+ Years" },
+  { label: "Projects", value: "30+ Delivered" },
+];
+
+const services = [
+  {
+    title: "WordPress Development",
+    desc: "Custom themes/plugins, performance, and security.",
+    href: "/services/wordpress-development",
+  },
+  {
+    title: "NextJS Development",
+    desc: "Modern apps with SSR/ISR, auth, and production deployment.",
+    href: "/services/nextjs-development",
+  },
+  {
+    title: "Full Stack Development",
+    desc: "End-to-end delivery from UI to backend & infra.",
+    href: "/services/full-stack-development",
+  },
+];
+
+const posts = [
+  { title: "The Future of Web Development in 2026", date: "2026-03-15", href: "/blog/first-post" },
+  { title: "Mastering Tailwind CSS v4: The Engine Rewrite", date: "2026-02-28", href: "/blog/mastering-tailwind-v4" },
+  { title: "Building High-Performance APIs with Go and Fiber", date: "2026-02-12", href: "/blog/building-high-performance-apis-with-go-fiber" },
+];
+---
+
+<PageLayout title={`${NAME} · ${ROLE}`} description={`${ROLE} · ${NAME}`} active="portfolio">
+  <main class="mx-auto w-full max-w-4xl px-6 py-10 md:py-20">
+    <!-- Hero like madebyaris.com -->
+    <section class="grid gap-8 md:grid-cols-12 md:items-start">
+      <div class="md:col-span-7">
+        <div class="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-sm text-muted-foreground">
+          <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          Available to Hire
+        </div>
+
+        <div class="mt-6">
+          <h1 class="whitespace-pre-line text-4xl font-semibold tracking-tight md:text-5xl">
+            {headline}
+          </h1>
+          <p class="mt-4 max-w-xl text-muted-foreground">{intro}</p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          {socials.map((s) => (
+            <Button asChild variant="outline" size="sm">
+              <a href={s.href} target="_blank" rel="noreferrer">
+                {s.label}
+              </a>
+            </Button>
+          ))}
+          <Button asChild size="sm">
+            <a href="/services">View Services</a>
+          </Button>
+        </div>
+      </div>
+
+      <div class="md:col-span-5">
+        <div class="grid gap-4">
+          <AvailabilityCard />
+          <div class="grid gap-4 sm:grid-cols-3 md:grid-cols-1">
+            {stats.map((s) => (
+              <StatCard label={s.label} value={s.value} />
+            ))}
+          </div>
+          <div class="rounded-xl border bg-card p-4">
+            <div class="text-sm text-muted-foreground">Specialization</div>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <Badge variant="secondary">PHP</Badge>
+              <Badge variant="secondary">Laravel</Badge>
+              <Badge variant="secondary">Golang</Badge>
+              <Badge variant="secondary">TypeScript</Badge>
+              <Badge variant="secondary">React</Badge>
+              <Badge variant="secondary">Next.js</Badge>
+              <Badge variant="secondary">WordPress</Badge>
+              <Badge variant="secondary">Docker</Badge>
+              <Badge variant="secondary">Kubernetes</Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pt-3">
+      <ClientCloud />
+    </div>
+
+    <div class="py-6">
+      <!-- Services preview -->
+      <section class="space-y-4">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-xl font-semibold tracking-tight">Expert Development Services</h2>
+        <a class="text-sm text-muted-foreground underline" href="/services">View all services</a>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-3">
+        {services.map((s) => (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">
+                <a class="hover:underline" href={s.href}>{s.title}</a>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">{s.desc}</CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div class="text-sm text-muted-foreground">
+        10+ years of experience building scalable solutions. Remote-first workflow with clear communication.
+      </div>
+      </section>
+    </div>
+
+    <Separator className="my-10" />
+
+    <div class="py-6">
+      <!-- Latest insights -->
+    <section class="space-y-4">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-xl font-semibold tracking-tight">Latest Insights</h2>
+        <a class="text-sm text-muted-foreground underline" href="/blog">View all posts</a>
+      </div>
+
+      <div class="grid gap-3">
+        {posts.map((post) => (
+          <a class="group rounded-lg border bg-card px-4 py-3 hover:bg-accent" href={post.href}>
+            <div class="flex items-center justify-between gap-4">
+              <span class="font-medium group-hover:underline">{post.title}</span>
+              <span class="text-sm text-muted-foreground">{post.date}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      </section>
+    </div>
+
+    <footer class="mt-14 text-sm text-muted-foreground">
+      Built with Astro + Tailwind + shadcn/ui.
+    </footer>
+  </main>
+</PageLayout>

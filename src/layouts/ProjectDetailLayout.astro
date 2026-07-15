@@ -1,0 +1,186 @@
+---
+import PageLayout from "./PageLayout.astro";
+import { Badge } from "../components/ui/badge";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  tags: string[];
+  features: string[];
+  challenges: string[];
+  solutions: string[];
+  liveLink?: string;
+  githubLink?: string;
+  active?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  description, 
+  image, 
+  tags, 
+  features, 
+  challenges, 
+  solutions, 
+  liveLink, 
+  githubLink, 
+  active = "projects" 
+} = Astro.props;
+---
+
+<PageLayout title={`${title} · Project`} active={active}>
+  <main class="mx-auto w-full max-w-4xl px-6 py-10 md:py-20">
+    <!-- Back Navigation -->
+    <a 
+      href="/projects" 
+      class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10 group"
+    >
+      <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
+      Back to Projects
+    </a>
+
+    <div class="space-y-16">
+      <!-- Hero Section -->
+      <section class="space-y-8">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border bg-muted/50 text-[10px] font-bold uppercase tracking-widest text-primary">
+            Project Showcase
+          </div>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight">
+            {title}
+          </h1>
+          <p class="text-xl text-muted-foreground/80 font-medium">
+            {subtitle}
+          </p>
+        </div>
+
+        <div class="relative aspect-[16/9] overflow-hidden rounded-3xl border bg-muted shadow-2xl">
+          <img 
+            src={image} 
+            alt={title} 
+            class="h-full w-full object-cover"
+          />
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-6">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <Badge variant="secondary" className="px-3 py-1 font-medium bg-muted/50 border-border/50">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+          <div class="flex gap-3">
+            {liveLink && (
+              <a 
+                href={liveLink} 
+                target="_blank" 
+                rel="noreferrer"
+                class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20"
+              >
+                <ExternalLink size={16} />
+                Live Demo
+              </a>
+            )}
+            {githubLink && (
+              <a 
+                href={githubLink} 
+                target="_blank" 
+                rel="noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border bg-background px-5 py-2 text-sm font-semibold transition-all hover:bg-accent active:scale-95"
+              >
+                <Github size={16} />
+                Source Code
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <!-- Overview -->
+      <section class="grid gap-12 md:grid-cols-3">
+        <div class="md:col-span-2 space-y-6">
+          <h2 class="text-2xl font-bold tracking-tight">Overview</h2>
+          <p class="text-muted-foreground leading-relaxed text-lg">
+            {description}
+          </p>
+        </div>
+        <div class="space-y-6">
+          <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Core Features</h2>
+          <ul class="space-y-3">
+            {features.map((feature) => (
+              <li class="flex items-start gap-3 text-sm font-medium text-muted-foreground italic">
+                <div class="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"></div>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <div class="h-px bg-border/50"></div>
+
+      <!-- Challenges & Solutions -->
+      <section class="grid gap-12 md:grid-cols-2">
+        <div class="space-y-8">
+          <div class="space-y-2">
+             <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-destructive/80">The Challenge</h2>
+             <p class="text-2xl font-semibold tracking-tight">Complex hurdles overcome.</p>
+          </div>
+          <div class="space-y-4">
+            {challenges.map((challenge) => (
+              <div class="rounded-2xl border border-destructive/10 bg-destructive/5 p-6 animate-in slide-in-from-left duration-500">
+                <p class="text-sm text-muted-foreground leading-relaxed">{challenge}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <div class="space-y-2">
+             <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-500">The Solution</h2>
+             <p class="text-2xl font-semibold tracking-tight">Architected for success.</p>
+          </div>
+          <div class="space-y-4">
+            {solutions.map((solution) => (
+              <div class="rounded-2xl border border-emerald-500/10 bg-emerald-500/5 p-6 animate-in slide-in-from-right duration-500">
+                <p class="text-sm text-muted-foreground leading-relaxed">{solution}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="rounded-3xl border bg-card p-10 md:p-16 text-center space-y-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary/[0.02] -z-10"></div>
+        <div class="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl"></div>
+        
+        <h2 class="text-3xl font-bold tracking-tight">Interested in similar results?</h2>
+        <p class="text-muted-foreground max-w-md mx-auto text-lg">
+          I'm available for strategic consulting and technical implementation of high-scale systems.
+        </p>
+        <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/contact" 
+            class="inline-flex h-12 items-center justify-center rounded-full bg-primary px-10 text-sm font-semibold text-primary-foreground transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20"
+          >
+            Start a Conversation
+          </a>
+          <a 
+            href="/services" 
+            class="inline-flex h-12 items-center justify-center rounded-full border bg-background px-10 text-sm font-semibold transition-all hover:bg-accent active:scale-95"
+          >
+            Explore Services
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+</PageLayout>
+

@@ -1,0 +1,42 @@
+---
+import ServiceDetailLayout from "../../layouts/ServiceDetailLayout.astro";
+
+const deliverables = [
+  "End-to-end architecture design",
+  "High-performance REST or GraphQL APIs",
+  "Responsive and interactive user interfaces",
+  "Scalable database schema and migrations",
+  "Cloud infrastructure (AWS/GCP/Vercel) setup",
+  "Continuous Integration & Deployment pipelines",
+  "Comprehensive testing (Unit, Integration, E2E)",
+  "Real-time features with WebSockets/Server-Sent Events",
+];
+
+const process = [
+  {
+    title: "Discovery & Strategy",
+    description: "We dive deep into your business goals, target audience, and technical requirements to build a solid roadmap.",
+  },
+  {
+    title: "Architecture & Design",
+    description: "Choosing the right stack and designing the database schema, API contracts, and user flow for maximum scalability.",
+  },
+  {
+    title: "Iterative Development",
+    description: "Building the application in sprints with regular demos and feedback loops to ensure alignment.",
+  },
+  {
+    title: "Deployment & Scale",
+    description: "Launching on production-grade infrastructure with automated monitoring and scaling capabilities.",
+  },
+];
+---
+
+<ServiceDetailLayout 
+  title="Full Stack Development"
+  description="Building robust, scalable, and secure end-to-end applications that solve real-world problems. I combine frontend artistry with backend reliability."
+  tags={["Node.js", "Go", "PostgreSQL", "React", "Docker", "Kubernetes"]}
+  deliverables={deliverables}
+  process={process}
+/>
+

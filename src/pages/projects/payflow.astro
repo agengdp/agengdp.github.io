@@ -1,0 +1,35 @@
+---
+import ProjectDetailLayout from "../../layouts/ProjectDetailLayout.astro";
+
+const tags = ["Go", "Laravel", "VueJS", "RabbitMQ", "Kubernetes", "Redis", "PostgreSQL"];
+const features = [
+  "Multi-channel Virtual Account Support",
+  "Real-time QRIS Dynamic Generation",
+  "Asynchronous Notification via RabbitMQ",
+  "Enterprise-grade Security (HMAC/SHA256)",
+  "Highly Scalable Microservices Architecture",
+  "Interactive Merchant Dashboard",
+];
+
+const challenges = [
+  "Handling high-volume concurrent transactions during peak hours without data loss or notification delays.",
+  "Ensuring 99.99% availability for critical bank integration endpoints that frequently experience timeouts.",
+];
+
+const solutions = [
+  "Implemented a robust message queuing system with RabbitMQ to decouple payment processing from bank notifications.",
+  "Deployed auto-scaling Kubernetes clusters with circuit breakers to manage traffic spikes and gracefully handle external service failures.",
+];
+---
+
+<ProjectDetailLayout
+  title="PayFlow"
+  subtitle="Financial Infrastructure & Payment Gateway"
+  description="PayFlow is a comprehensive financial engine designed to bridge the gap between businesses and banking institutions. By leveraging a high-performance microservices architecture built with Go and Laravel, PayFlow processes thousands of transactions daily with sub-second latency. The system supports complex integration patterns like Virtual Accounts (VA), E-wallets, and Dynamic QRIS, providing merchants with a unified API and a powerful real-time dashboard."
+  image="/assets/projects/payment-gateway.png"
+  tags={tags}
+  features={features}
+  challenges={challenges}
+  solutions={solutions}
+  liveLink="#"
+/>
