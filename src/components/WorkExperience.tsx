@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, Code, Building, Building2, User, Globe } from "lucide-react";
+import { Briefcase, ChevronDown, Code, Building, Building2, User, Globe } from "lucide-react";
 
 const ICON_MAP = {
   code: Code,
@@ -35,92 +35,134 @@ export function WorkExperience({
   experiences: ExperienceItemType[];
   className?: string;
 }) {
+  const [openIds, setOpenIds] = React.useState<Set<string>>(new Set([experiences[0]?.id]));
+
+  const toggleOpen = (id: string) => {
+    setOpenIds((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div className={className}>
-      <div className="space-y-10">
+      <div className="space-y-3">
         {experiences.map((exp) => (
-          <div key={exp.id} className="relative pl-6 before:absolute before:left-0 before:top-1.5 before:h-full before:w-px before:bg-border last:before:hidden">
-            <div className="absolute left-[-4px] top-1.5 h-2 w-2 rounded-full bg-primary" />
-            
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-3">
-                <div className="relative h-8 w-8 flex-shrink-0">
+          <div
+            key={exp.id}
+            className="group border border-border rounded-lg bg-card/30 hover:bg-card/60 transition-all duration-200 overflow-hidden"
+          >
+            {/* Header - Click to expand */}
+            <button
+              onClick={() => toggleOpen(exp.id)}
+              className="w-full px-4 py-4 flex items-center justify-between hover:bg-accent/5 transition-colors"
+            >
+              <div className="flex items-center gap-3 text-left flex-1">
+                <div className="relative h-10 w-10 flex-shrink-0">
                   {exp.companyLogo ? (
-                    <img 
-                      src={exp.companyLogo} 
-                      alt={`${exp.companyName} logo`} 
-                      className="h-8 w-8 rounded bg-white object-contain p-0.5 border"
+                    <img
+                      src={exp.companyLogo}
+                      alt={`${exp.companyName} logo`}
+                      className="h-10 w-10 rounded bg-white object-contain p-0.5 border shadow-sm"
                       onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        const fallback = e.currentTarget.parentElement?.querySelector('.logo-fallback') as HTMLElement;
-                        if (fallback) fallback.style.display = 'flex';
-                      }} 
+                        e.currentTarget.style.display = "none";
+                        const fallback = e.currentTarget.parentElement?.querySelector(
+                          ".logo-fallback"
+                        ) as HTMLElement;
+                        if (fallback) fallback.style.display = "flex";
+                      }}
                     />
                   ) : null}
-                  
-                  <div 
-                    className="logo-fallback flex h-8 w-8 items-center justify-center rounded border bg-muted text-xs font-semibold uppercase text-muted-foreground"
-                    style={{ display: exp.companyLogo ? 'none' : 'flex' }}
+
+                  <div
+                    className="logo-fallback flex h-10 w-10 items-center justify-center rounded border bg-muted text-sm font-semibold uppercase text-muted-foreground"
+                    style={{ display: exp.companyLogo ? "none" : "flex" }}
                   >
-                    {exp.companyIcon && ICON_MAP[exp.companyIcon] ? (
-                      React.createElement(ICON_MAP[exp.companyIcon], { size: 16 })
-                    ) : (
-                      exp.companyName.substring(0, 2)
-                    )}
+                    {exp.companyIcon && ICON_MAP[exp.companyIcon]
+                      ? React.createElement(ICON_MAP[exp.companyIcon], { size: 18 })
+                      : exp.companyName.substring(0, 2)}
                   </div>
                 </div>
-                
-                <div className="flex flex-col">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-base font-semibold">{exp.companyName}</h3>
+
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-base font-semibold text-foreground">
+                      {exp.companyName}
+                    </h3>
                     {exp.isCurrentEmployer && (
-                      <Badge variant="secondary" className="h-5 px-1.5 text-[10px]">Current</Badge>
+                      <Badge variant="default" className="h-5 px-1.5 text-[10px] font-semibold">
+                        Current
+                      </Badge>
                     )}
                   </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {exp.positions.length} position{exp.positions.length !== 1 ? "s" : ""}
+                  </p>
                 </div>
               </div>
 
-              {exp.positions.map((pos) => {
-                const clientsMentioned = pos.description.match(/Bank [^,\n]+|Telkom[^,\n]+|Gojek|Traveloka|Tokopedia|Pertamina/g);
-                const bullets = pos.description
-                  .split("\n")
-                  .map((line) => line.replace(/^-\s*/, "").trim())
-                  .filter(Boolean);
+              <ChevronDown
+                size={20}
+                className={`flex-shrink-0 text-muted-foreground transition-transform duration-300 ${
+                  openIds.has(exp.id) ? "rotate-180" : ""
+                }`}
+              />
+            </button>
 
-                return (
-                  <div key={pos.id} className="mt-2">
-                    <div className="flex w-full flex-wrap items-center gap-x-2 text-sm text-left">
-                      <span className="font-medium text-foreground/90">{pos.title}</span>
-                      <span className="text-muted-foreground/30">•</span>
-                      <span className="text-xs text-muted-foreground">{pos.employmentPeriod}</span>
-                    </div>
+            {/* Expanded content */}
+            {openIds.has(exp.id) && (
+              <div className="border-t border-border bg-background/40 px-4 py-4 space-y-4">
+                {exp.positions.map((pos, posIdx) => {
+                  const bullets = pos.description
+                    .split("\n")
+                    .map((line) => line.replace(/^-\s*/, "").trim())
+                    .filter(Boolean);
 
-                    {clientsMentioned && (
-                      <div className="mt-1.5 flex flex-wrap gap-1">
-                        {Array.from(new Set(clientsMentioned)).map((client) => (
-                          <span key={client} className="text-[9px] font-medium uppercase tracking-tight text-muted-foreground/60 bg-muted/30 px-1 py-0.5 rounded border border-border/50">
-                            {client}
-                          </span>
-                        ))}
+                  return (
+                    <div key={pos.id} className={posIdx > 0 ? "pt-4 border-t border-border/50" : ""}>
+                      {/* Position title and date */}
+                      <div className="flex flex-col gap-1 mb-3">
+                        <div className="flex flex-wrap items-baseline gap-2">
+                          <h4 className="text-sm font-semibold text-foreground">{pos.title}</h4>
+                          <span className="text-xs text-muted-foreground">{pos.employmentPeriod}</span>
+                        </div>
+                        <span className="text-xs text-muted-foreground/70 font-medium">
+                          {pos.employmentType}
+                        </span>
                       </div>
-                    )}
 
-                    <div className="mt-3 space-y-3">
-                      <ul className="list-disc space-y-1.5 pl-4 text-xs text-muted-foreground">
+                      {/* Achievements/bullets */}
+                      <ul className="space-y-2 mb-4">
                         {bullets.map((bullet, idx) => (
-                          <li key={idx}>{bullet}</li>
+                          <li key={idx} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
+                            <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-primary/60" />
+                            <span>{bullet}</span>
+                          </li>
                         ))}
                       </ul>
-                      <div className="flex flex-wrap gap-1">
+
+                      {/* Skills */}
+                      <div className="flex flex-wrap gap-1.5">
                         {pos.skills.map((skill) => (
-                          <Badge key={skill} variant="outline" className="text-[10px] h-4 px-1">{skill}</Badge>
+                          <Badge
+                            key={skill}
+                            variant="secondary"
+                            className="text-[11px] h-5 px-2 font-normal"
+                          >
+                            {skill}
+                          </Badge>
                         ))}
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         ))}
       </div>
