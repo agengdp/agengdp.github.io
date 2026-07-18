@@ -62,6 +62,8 @@ const SKILLS: Skill[] = [
   { name: "Portainer", icon: "/assets/skills/portainer.svg", category: "Tools" },
   { name: "JWT", icon: "/assets/skills/jwt.svg", category: "Tools" },
   { name: "Microservices", icon: "/assets/skills/microservices.svg", category: "Tools" },
+  { name: "RabbitMQ", icon: "/assets/skills/rabbitmq.svg", category: "Tools" },
+  { name: "NATS", icon: "/assets/skills/nats.svg", category: "Tools" },
 ];
 
 const CATEGORIES = ["All", "Languages", "Frameworks & Libraries", "Databases", "Tools"];
