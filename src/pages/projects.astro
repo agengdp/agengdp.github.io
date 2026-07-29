@@ -2,7 +2,6 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import "../styles/global.css";
 import { Badge } from "../components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 
 const projects = [
@@ -54,74 +53,43 @@ const projects = [
         </p>
     </div>
 
-    <div class="mt-12 space-y-20">
-      <!-- Featured Projects -->
-      <section class="grid gap-8 md:grid-cols-2">
-        {projects.filter(p => p.featured).map((p) => (
-          <div class="group relative flex flex-col space-y-4">
-            <a href={p.link} class="relative aspect-[16/10] overflow-hidden rounded-2xl border bg-muted shadow-sm transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20">
-              <img 
-                src={p.image} 
-                alt={p.title} 
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    <div class="mt-12">
+      <!-- Bento Grid -->
+      <section class="grid grid-cols-1 gap-5 md:grid-cols-3 md:auto-rows-[220px]">
+        {projects.map((p, idx) => {
+          // Bento spans: first project big (2x2), second tall (1x2), rest wide (2x1) or normal (1x1)
+          const spanClass = idx === 0
+            ? "md:col-span-2 md:row-span-2"
+            : idx === 1
+            ? "md:col-span-1 md:row-span-2"
+            : idx === 2
+            ? "md:col-span-2 md:row-span-1"
+            : "md:col-span-1 md:row-span-1";
+          return (
+            <a href={p.link} class={`group relative overflow-hidden rounded-2xl border bg-muted shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/20 ${spanClass}`}>
+              <img
+                src={p.image}
+                alt={p.title}
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </a>
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <h3 class="text-xl font-semibold tracking-tight">
-                    <a href={p.link} class="hover:underline">{p.title}</a>
-                </h3>
-                <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-wider">Featured</Badge>
-              </div>
-              <p class="text-sm font-medium text-muted-foreground/80">{p.subtitle}</p>
-              <p class="text-sm text-muted-foreground line-clamp-2">{p.description}</p>
-              <div class="flex flex-wrap gap-1.5 pt-2">
-                {p.tags.slice(0, 4).map((t) => (
-                  <Badge variant="secondary" className="px-1.5 py-0 text-[10px]">{t}</Badge>
-                ))}
-              </div>
-              <div class="pt-2">
-                 <Button asChild variant="link" className="h-auto p-0 text-sm font-medium group-hover:underline">
-                    <a href={p.link}>
-                        View Project Details
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 transition-transform group-hover:translate-x-1"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-                    </a>
-                 </Button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-      <!-- Archive / More Work -->
-      <section class="space-y-8 pt-8 border-t">
-        <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-bold tracking-tight">More Projects</h2>
-        </div>
-        <div class="grid gap-6 md:grid-cols-2">
-          {projects.filter(p => !p.featured).map((p) => (
-            <a href={p.link} class="block transition-transform hover:-translate-y-1">
-                <Card className="flex flex-col h-full overflow-hidden transition-all hover:bg-accent/50 group border-muted/60">
-                <CardHeader className="p-5">
-                    <div class="flex items-center justify-between">
-                        <CardTitle className="text-lg group-hover:underline">{p.title}</CardTitle>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1"><path d="M7 7h10v10M7 17 17 7"/></svg>
-                    </div>
-                    <p class="text-xs font-medium text-muted-foreground/80">{p.subtitle}</p>
-                </CardHeader>
-                <CardContent className="flex-1 space-y-4 p-5 pt-0">
-                    <p class="text-sm text-muted-foreground line-clamp-3">{p.description}</p>
-                    <div class="flex flex-wrap gap-1.5">
-                    {p.tags.map((t) => (
-                        <Badge variant="secondary" className="px-1.5 py-0 text-[9px] font-normal">{t}</Badge>
-                    ))}
-                    </div>
-                </CardContent>
-                </Card>
+              {p.featured && (
+                <Badge variant="outline" className="absolute right-3 top-3 border-white/30 bg-black/30 font-mono text-[9px] uppercase tracking-wider text-white backdrop-blur-sm">Featured</Badge>
+              )}
+
+              <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+                <h3 class="text-lg font-semibold tracking-tight text-white md:text-xl">{p.title}</h3>
+                <p class="mt-0.5 text-xs font-medium text-white/70 md:text-sm">{p.subtitle}</p>
+                <div class="mt-2.5 flex flex-wrap gap-1.5">
+                  {p.tags.slice(0, idx === 0 ? 5 : 3).map((t) => (
+                    <Badge variant="secondary" className="border-0 bg-white/15 px-1.5 py-0 text-[9px] text-white backdrop-blur-sm">{t}</Badge>
+                  ))}
+                </div>
+              </div>
             </a>
-          ))}
-        </div>
+          );
+        })}
       </section>
     </div>
 
